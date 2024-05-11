@@ -1,26 +1,22 @@
-import express from "express";
 import "reflect-metadata";
+import express from "express";
 import { config } from "dotenv";
 import TutorRoutes from "./routes/TutorRoutes";
 import PetRoutes from "./routes/PetRoutes";
-import { createConnection } from "typeorm";
+import { AppDataSource } from "./ormconfig";
+
 config();
-const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use("/tutor", TutorRoutes);
-app.use("/", PetRoutes);
+AppDataSource.initialize()
+  .then(async () => {
+    const app = express();
+    app.use(express.json());
 
-createConnection()
-  .then(() => {
-    console.log("Database connected");
+    app.use(TutorRoutes);
+    app.use(PetRoutes);
+
+    app.listen(port, () => console.log("It's working!"));
   })
-  .catch((error) => {
-    console.log(error);
-  });
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  .catch((error) => console.log(error));

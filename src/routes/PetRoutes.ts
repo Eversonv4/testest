@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { createPet, updatePet, deletePet } from "../controllers/PetController";
+import { petController } from "../controllers/PetController";
 
 const router = Router();
 
-router.post("/pet/:tutorId", createPet);
-router.put("/pet/:petId/tutor/:tutorId", updatePet);
-router.delete("/pet/:petId/tutor/:tutorId", deletePet);
+router.post("/pet/:tutorId", petController.createPet);
+router.put("/pet/:petId/tutor/:tutorId", petController.updatePet);
+router.delete("/pet/:petId/tutor/:tutorId", petController.deletePet);
 
 export default router;

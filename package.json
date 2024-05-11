@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts"
+    "dev": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migrations:run": "typeorm-ts-node-commonjs -d ./src/ormconfig.ts migration:run",
+    "migrations:create": "npm run typeorm -- migration:create",
+    "migrations:generate": "typeorm-ts-node-commonjs -d ./src/ormconfig.ts migration:generate ./src/migrations/default"
   },
   "keywords": [],
   "author": "",

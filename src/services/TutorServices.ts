@@ -1,8 +1,8 @@
-import { getRepository } from "typeorm";
+import { AppDataSource } from "../ormconfig";
 import { Tutor } from "../entities/Tutor";
 
-export class TutorService {
-  private tutorRepository = getRepository(Tutor);
+class TutorService {
+  private tutorRepository = AppDataSource.getRepository(Tutor);
 
   async getTutors(): Promise<Tutor[]> {
     return await this.tutorRepository.find({ relations: ["pets"] });
@@ -45,3 +45,7 @@ export class TutorService {
     await this.tutorRepository.delete(id);
   }
 }
+
+const tutorService = new TutorService();
+
+export {tutorService};

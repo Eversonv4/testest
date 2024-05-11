@@ -1,16 +1,11 @@
 import { Router } from "express";
-import {
-  getTutors,
-  createTutor,
-  updateTutor,
-  deleteTutor,
-} from "../controllers/TutorControllers";
+import {tutorController} from "../controllers/TutorControllers";
 
 const router = Router();
 
-router.get("/tutors", getTutors);
-router.post("/tutor", createTutor);
-router.put("/tutor/:id", updateTutor);
-router.delete("/tutor/:id", deleteTutor);
+router.get("/tutors", tutorController.getTutors);
+router.post("/tutor", tutorController.createTutor);
+router.put("/tutor/:id", tutorController.updateTutor);
+router.delete("/tutor/:id", tutorController.deleteTutor);
 
 export default router;
