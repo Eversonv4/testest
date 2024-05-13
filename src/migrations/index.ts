@@ -1,3 +1,3 @@
-import { Default1715454013813 } from "./1715454013813-default";
+import { Default1715637951310 } from "./1715637951310-default";
 
-export default [Default1715454013813];
+export default [Default1715637951310];
